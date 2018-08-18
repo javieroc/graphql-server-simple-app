@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "db:seed": "npx babel-node ./src/seeders/index.js"
   },
   "author": "Javier Ocampo",
   "license": "MIT",
@@ -21,6 +22,11 @@
   },
   "dependencies": {
     "apollo-server": "^2.0.4",
-    "graphql": "^0.13.2"
+    "bcryptjs": "^2.4.3",
+    "casual": "^1.5.19",
+    "dotenv": "^6.0.0",
+    "graphql": "^0.13.2",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.9"
   }
 }
