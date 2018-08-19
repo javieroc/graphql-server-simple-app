@@ -8,7 +8,7 @@ const userSeeder = async () => {
     firstName: casual.first_name,
     lastName: casual.last_name,
     password: hash('secret', 10),
-    phome: casual.phone,
+    phone: casual.phone,
   }));
 
   await Promise.all(promises);
