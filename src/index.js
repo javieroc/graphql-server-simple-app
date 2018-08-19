@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const server = new ApolloServer({
   schema,
+  introspection: true,
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
