@@ -7,6 +7,9 @@ const User = gql`
     firstName: String!
     lastName: String!
     phone: String!
+    lifePoint: String!
+    createdAt: String!
+    updatedAt: String!
   }
 `;
 
