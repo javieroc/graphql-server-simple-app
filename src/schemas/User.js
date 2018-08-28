@@ -11,6 +11,14 @@ const User = gql`
     createdAt: String!
     updatedAt: String!
   }
+
+  input UserUpdated {
+    email: String!
+    firstName: String
+    lastName: String
+    phone: String
+    lifePoint: String
+  }
 `;
 
 export default User;

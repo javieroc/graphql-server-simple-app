@@ -6,6 +6,10 @@ const rootQuery = gql`
   type Query {
     users: [User]!
   }
+
+  type Mutation {
+    updateUser(userUpdated: UserUpdated): User!
+  }
 `;
 
 const schema = makeExecutableSchema({

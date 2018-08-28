@@ -7,6 +7,13 @@ const userResolver = {
       return users;
     },
   },
+  Mutation: {
+    updateUser: async (parent, { userUpdated }) => {
+      const { email, ...others } = userUpdated;
+      const user = await User.findOneAndUpdate({ email }, { ...others }, { new: true });
+      return user;
+    },
+  },
 };
 
 export default userResolver;
