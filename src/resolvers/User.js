@@ -1,4 +1,4 @@
-import { UserInputError } from 'apollo-server';
+import { UserInputError, ForbiddenError } from 'apollo-server';
 import { hashSync as hash, compareSync as comparePasswords } from 'bcryptjs';
 import moment from 'moment';
 import { User } from '../models';
@@ -52,10 +52,14 @@ const userResolver = {
         user,
       };
     },
-    updateUser: async (parent, { userUpdated }) => {
+    updateUser: async (parent, { userUpdated }, { user }) => {
+      if (!user) {
+        throw new ForbiddenError('Not authenticated as user.');
+      }
+
       const { email, ...others } = userUpdated;
-      const user = await User.findOneAndUpdate({ email }, { ...others }, { new: true });
-      return user;
+      const u = await User.findOneAndUpdate({ email }, { ...others }, { new: true });
+      return u;
     },
   },
 };

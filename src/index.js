@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 import mongoose from 'mongoose';
 import schema from './schema';
+import { verifyToken } from './services';
 import 'dotenv/config';
 
 mongoose.connect(
@@ -8,10 +9,16 @@ mongoose.connect(
   { useNewUrlParser: true },
 );
 
+const getUser = (req) => {
+  const token = req.headers['x-token'];
+  return token ? verifyToken(token, process.env.SECRET) : null;
+};
+
 const server = new ApolloServer({
   schema,
   introspection: true,
-  context: async () => ({
+  context: async ({ req }) => ({
+    user: getUser(req),
     secret: process.env.SECRET,
   }),
 });
