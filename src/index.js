@@ -3,11 +3,17 @@ import mongoose from 'mongoose';
 import schema from './schema';
 import 'dotenv/config';
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(
+  process.env.MONGODB_URI,
+  { useNewUrlParser: true },
+);
 
 const server = new ApolloServer({
   schema,
   introspection: true,
+  context: async () => ({
+    secret: process.env.SECRET,
+  }),
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {

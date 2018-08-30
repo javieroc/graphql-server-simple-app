@@ -7,9 +7,15 @@ const User = gql`
     firstName: String!
     lastName: String!
     phone: String!
+    photo: String!
     lifePoint: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  type Auth {
+    token: String
+    user: User
   }
 
   input UserUpdated {
@@ -17,7 +23,21 @@ const User = gql`
     firstName: String
     lastName: String
     phone: String
+    photo: String
     lifePoint: String
+  }
+
+  input SignInData {
+    email: String!
+    password: String!
+  }
+
+  input SignUpData {
+    email: String!
+    password: String!
+    firstName: String!
+    lastName: String!
+    phone: String!
   }
 `;
 

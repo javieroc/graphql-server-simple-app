@@ -8,6 +8,8 @@ const rootQuery = gql`
   }
 
   type Mutation {
+    signIn(signInData: SignInData): Auth!
+    signUp(signUpData: SignUpData): Auth!
     updateUser(userUpdated: UserUpdated): User!
   }
 `;
